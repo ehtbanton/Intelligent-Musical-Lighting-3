@@ -1,35 +1,40 @@
 // AudioAnalyzer.hpp
 #ifndef AUDIO_ANALYZER_HPP
-#define WINDOW_DISPLAY_CONTROLLER_HPP
+#define AUDIO_ANALYZER_HPP
 
 #include <SFML/Audio.hpp>
 #include <vector>
-#include <cmath>
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+#include <complex>
+#include <string>
 
 class AudioAnalyzer {
 private:
     static const size_t SAMPLE_RATE = 44100;
-    static const size_t BUFFER_SIZE = 2048;
+    static const size_t BUFFER_SIZE = 1024;  // Reduced for testing
 
-    // Test signal parameters
-    float time;
-    float frequency;
-    float amplitude;
+    sf::SoundBufferRecorder recorder;
+    std::vector<sf::Int16> samples;
+    std::vector<float> spectrum;
 
+    // Audio analysis parameters
     float currentVolume;
     float currentCentroid;
 
     // Helper functions
-    void generateTestSignal();
+    void calculateSpectrum();
+    float calculateSpectralCentroid();
+    float calculateRMS();
     void normalizeValue(float& value, float minValue = 0.0f, float maxValue = 1.0f);
-    float smoothValue(float current, float target, float smoothing);
 
+    // Smoothing parameters
     float volumeSmoothing;
     float centroidSmoothing;
+    float smoothValue(float current, float target, float smoothing);
+
+    // Debug functions
+    void printAudioDevices();
+    bool checkAudioAvailability();
+    bool setupAudioDevice(const std::string& deviceName = "");
 
 public:
     AudioAnalyzer();
