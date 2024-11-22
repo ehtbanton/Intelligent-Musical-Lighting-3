@@ -3,9 +3,16 @@
 
 #include "WindowDisplayController.hpp"
 
+#include <iostream>
+using namespace std;
+
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Team Project");
     WindowDisplayController displayController(window);
+
+    // Optionally adjust cycle speeds (in Hz)
+    // displayController.setColorCycleSpeed(0.1f);      // Slower color cycle
+    // displayController.setBrightnessCycleSpeed(0.3f); // Slower brightness cycle
 
     while (window.isOpen()) {
         sf::Event event;
@@ -14,12 +21,8 @@ int main() {
                 window.close();
         }
 
-        // Example: Update color based on some inputs
-        // Replace these with your actual input values
-        double input1 = 0.5; // Controls hue
-        double input2 = 0.8; // Controls brightness
-
-        displayController.updateDisplay(input1, input2);
+        // Update display (will automatically cycle colors and brightness)
+        displayController.updateDisplay();
     }
 
     return 0;

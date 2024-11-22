@@ -2,7 +2,14 @@
 #include "WindowDisplayController.hpp"
 
 WindowDisplayController::WindowDisplayController(sf::RenderWindow& win)
-    : window(win) {}
+    : window(win),
+    currentHue(0.0),
+    currentBrightness(1.0),
+    colorCycleSpeed(0.2f),    // Complete color cycle every 5 seconds
+    brightnessCycleSpeed(0.5f) // Complete brightness cycle every 2 seconds
+{
+    clock.restart();
+}
 
 double WindowDisplayController::clamp(double value, double min, double max) {
     return std::max(min, std::min(value, max));
@@ -38,15 +45,26 @@ sf::Color WindowDisplayController::HSVtoRGB(double hue, double saturation, doubl
     );
 }
 
-void WindowDisplayController::updateDisplay(double input1, double input2) {
-    // Map first input to hue (0-1 range)
-    double hue = clamp(input1);
+void WindowDisplayController::updateCycleParameters(float deltaTime) {
+    // Update hue (continuous cycle)
+    currentHue += colorCycleSpeed * deltaTime;
+    if (currentHue >= 1.0) {
+        currentHue -= 1.0;
+    }
 
-    // Map second input to brightness/value (0-1 range)
-    double brightness = clamp(input2);
+    // Update brightness (sine wave oscillation)
+    double brightnessPhase = brightnessCycleSpeed * clock.getElapsedTime().asSeconds() * 2.0 * M_PI;
+    currentBrightness = (std::sin(brightnessPhase) + 1.0) * 0.5; // Oscillate between 0 and 1
+}
+
+void WindowDisplayController::updateDisplay() {
+    float deltaTime = clock.restart().asSeconds();
+
+    // Update cycling parameters
+    updateCycleParameters(deltaTime);
 
     // Convert to RGB color (using constant saturation for vibrant colors)
-    sf::Color color = HSVtoRGB(hue, 1.0, brightness);
+    sf::Color color = HSVtoRGB(currentHue, 1.0, currentBrightness);
 
     // Clear window with new color
     window.clear(color);
