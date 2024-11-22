@@ -21,6 +21,9 @@
     <ClCompile Include="src\WindowDisplayController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\AudioAnalyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -759,6 +762,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\WindowDisplayController.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AudioAnalyzer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

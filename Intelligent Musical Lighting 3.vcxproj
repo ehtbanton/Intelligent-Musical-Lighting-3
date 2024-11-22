@@ -105,6 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)extern\SFML\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,6 +123,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)extern\SFML\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AudioAnalyzer.cpp" />
     <ClCompile Include="src\WindowDisplayController.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
@@ -658,6 +661,7 @@
     <ClInclude Include="extern\SFML\include\SFML\Window\Window.hpp" />
     <ClInclude Include="extern\SFML\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="extern\SFML\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="src\AudioAnalyzer.hpp" />
     <ClInclude Include="src\WindowDisplayController.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
