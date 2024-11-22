@@ -9,7 +9,7 @@
 
 ### 1. Getting the Project
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/ehtbanton/Intelligent-Musical-Lighting-3.git
 cd TeamProject
 ```
 
@@ -62,32 +62,7 @@ cd TeamProject
    - Note: Remove the "-d" for Release configuration
 
 ### 4. Testing the Setup
-1. Copy this test code into `src/main.cpp`:
-```cpp
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-
-int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Team Project");
-    
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear(sf::Color::Blue);
-        window.display();
-    }
-
-    return 0;
-}
-```
-
-2. Copy required DLLs:
-   - Copy all DLL files from `extern/SFML/bin/` to your project's output directory
-   - Default location: `TeamProject/x64/Debug/`
+Press F5 to build and run the project. You should see a colourful window if everything is set up correctly.
 
 ### 5. Running the Project
 1. Set solution configuration to "Debug" and platform to "x64"
